@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import DisplayBill from './components/DisplayBill';
+import Form from './components/Form';
+import Navbar from './components/Navbar';
 
 function App() {
+  const [bill , setBill] = useState([]);
+  const handleBill = (data) =>{
+    setBill(bill.concat(data));
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <Navbar/>
+    <div className="container mt-5 mb-5">
+      <div className="row">
+        <div className="col-md-5"><Form getBillData={handleBill}/></div>
+        <div className="col-md-6 mx-3"><DisplayBill billData={bill}/></div>
+      </div>
     </div>
+    </>
   );
 }
 
